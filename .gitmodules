@@ -1,0 +1,3 @@
+[submodule "pyclothoids/src/Submodules/Clothoids"]
+	path = pyclothoids/src/Submodules/Clothoids
+	url = https://github.com/ebertolazzi/Clothoids.git

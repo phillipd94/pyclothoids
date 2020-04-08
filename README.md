@@ -1,2 +1,6 @@
 # pyclothoids
 A Python library for clothoid curves
+
+Due to their remarkable properties, clothoid curves are applicable to a wide range of problems in mathematics and engineering.  They have been the subject of a good deal of resesarch over the years, and no literature review concerning the clothoid is complete without the work of Enrico Bertolazzi.  Not only is his work enlightening and highly applicable, but it is accompanied by an extensive open source c++ library.  Unfortunately, the efficiency of c++ comes at the cost of complexity, giving the library a learning curve too steep to be useful in the hands of a mere mortal like me.  You could shell out thousands of dollars for a Matlab license and use the mex wrappers provided, or...
+
+You could use this library!  A pybind11 wrapper around a minimalistic subset of the core features of Bertolazzi's library, with a clean and pythonic interface designed for simplicity and ease of use.  In particular, the goal with this library is to expose as few "gotchas" as possible, so that you can quickly get up and running playing with clothoid curves for your application in a few minutes without needing to read more than a half page of API references.
