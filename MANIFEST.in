@@ -1,0 +1,3 @@
+include pyclothoids\src\Submodules\Clothoids\src\*.hh 
+include pyclothoids\src\Submodules\Clothoids\submodules\quarticRootsFlocke\src\*.hh
+include pyclothoids\src\Submodules\Clothoids\src\*.hxx

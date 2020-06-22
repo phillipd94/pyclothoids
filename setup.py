@@ -6,7 +6,7 @@ import setuptools
 from os import listdir
 from os.path import isfile, join
 
-__version__ = '0.0.2'
+__version__ = '0.1.0'
 
 
 class get_pybind_include(object):
@@ -24,7 +24,7 @@ class get_pybind_include(object):
         return pybind11.get_include(self.user)
 
 
-ext_modules = [
+extensions = [
     Extension(
         'pyclothoids._clothoids_cpp',
         ['pyclothoids\\' + i for i in ('src\main.cpp','src\Submodules\Clothoids\src\Fresnel.cc','src\Submodules\Clothoids\src\Clothoid.cc','src\Submodules\Clothoids\src\G2lib.cc',
@@ -117,7 +117,7 @@ setup(
     description='A library for clothoid curves in Python',
     long_description='',
     packages = ['pyclothoids'],
-    ext_modules=ext_modules,
+    ext_modules=extensions,
     install_requires=['pybind11>=2.4','numpy'],
     setup_requires=['pybind11>=2.4'],
     cmdclass={'build_ext': BuildExt},
