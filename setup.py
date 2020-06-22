@@ -6,7 +6,7 @@ import setuptools
 from pathlib import Path
 
 from os import listdir
-from os.path import isfile, join, abspath
+from os.path import isfile, join, abspath, dirname
 
 __version__ = '0.1.2'
 
@@ -113,7 +113,7 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
         
 # read the contents of your README file
-this_directory = abspath(path.dirname(__file__))
+this_directory = abspath(dirname(__file__))
 with open(join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
