@@ -2,7 +2,7 @@
 Author: Phillip Dix
 */
 
-#ifdefined(_WIN32)
+#ifdef _WIN32
 #include <pybind11\pybind11.h>
 #else
 #include <pybind11/pybind11.h>
