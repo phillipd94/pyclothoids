@@ -6,7 +6,7 @@ import setuptools
 from pathlib import Path
 
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, abspath
 
 __version__ = '0.1.1'
 
@@ -111,6 +111,11 @@ class BuildExt(build_ext):
             ext.extra_compile_args = opts
             ext.extra_link_args = link_opts
         build_ext.build_extensions(self)
+        
+# read the contents of your README file
+this_directory = abspath(path.dirname(__file__))
+with open(join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name='pyclothoids',
@@ -119,7 +124,8 @@ setup(
     author_email='phildix11@gmail.com',
     url='https://github.com/phillipd94/PyClothoids',
     description='A library for clothoid curves in Python',
-    long_description='',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     packages = ['pyclothoids'],
     ext_modules=extensions,
     install_requires=['pybind11>=2.4','numpy'],
