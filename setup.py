@@ -3,6 +3,8 @@ from setuptools.command.build_ext import build_ext
 import sys
 import setuptools
 
+from pathlib import Path
+
 from os import listdir
 from os.path import isfile, join
 
@@ -27,7 +29,7 @@ class get_pybind_include(object):
 extensions = [
     Extension(
         'pyclothoids._clothoids_cpp',
-        ['pyclothoids\\' + i for i in ('src\main.cpp','src\Submodules\Clothoids\src\Fresnel.cc','src\Submodules\Clothoids\src\Clothoid.cc','src\Submodules\Clothoids\src\G2lib.cc',
+        [str(Path('pyclothoids\\' + i)) for i in ('src\main.cpp','src\Submodules\Clothoids\src\Fresnel.cc','src\Submodules\Clothoids\src\Clothoid.cc','src\Submodules\Clothoids\src\G2lib.cc',
         'src\Submodules\Clothoids\src\AABBtree.cc','src\Submodules\Clothoids\src\Biarc.cc','src\Submodules\Clothoids\src\BiarcList.cc','src\Submodules\Clothoids\src\Circle.cc',
         'src\Submodules\Clothoids\src\ClothoidDistance.cc','src\Submodules\Clothoids\src\ClothoidG2.cc','src\Submodules\Clothoids\src\ClothoidList.cc',
         'src\Submodules\Clothoids\src\G2lib_intersect.cc','src\Submodules\Clothoids\src\Line.cc','src\Submodules\Clothoids\src\PolyLine.cc','src\Submodules\Clothoids\src\Triangle2D.cc',
@@ -38,8 +40,8 @@ extensions = [
             # Path to pybind11 headers
             get_pybind_include(),
             get_pybind_include(user=True),
-            'pyclothoids\src\Submodules\Clothoids\src',
-            'pyclothoids\src\Submodules\Clothoids\submodules\quarticRootsFlocke\src'
+            str(Path('pyclothoids\src\Submodules\Clothoids\src')),
+            str(Path('pyclothoids\src\Submodules\Clothoids\submodules\quarticRootsFlocke\src'))
         ],
         language='c++'
     ),
