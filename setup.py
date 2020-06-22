@@ -8,7 +8,7 @@ from pathlib import Path
 from os import listdir
 from os.path import isfile, join
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 class get_pybind_include(object):
@@ -29,19 +29,21 @@ class get_pybind_include(object):
 extensions = [
     Extension(
         'pyclothoids._clothoids_cpp',
-        [str(Path('pyclothoids\\' + i)) for i in ('src\main.cpp','src\Submodules\Clothoids\src\Fresnel.cc','src\Submodules\Clothoids\src\Clothoid.cc','src\Submodules\Clothoids\src\G2lib.cc',
-        'src\Submodules\Clothoids\src\AABBtree.cc','src\Submodules\Clothoids\src\Biarc.cc','src\Submodules\Clothoids\src\BiarcList.cc','src\Submodules\Clothoids\src\Circle.cc',
-        'src\Submodules\Clothoids\src\ClothoidDistance.cc','src\Submodules\Clothoids\src\ClothoidG2.cc','src\Submodules\Clothoids\src\ClothoidList.cc',
-        'src\Submodules\Clothoids\src\G2lib_intersect.cc','src\Submodules\Clothoids\src\Line.cc','src\Submodules\Clothoids\src\PolyLine.cc','src\Submodules\Clothoids\src\Triangle2D.cc',
-        'src\Submodules\Clothoids\submodules\quarticRootsFlocke\src\PolynomialRoots-1-Quadratic.cc','src\Submodules\Clothoids\submodules\quarticRootsFlocke\src\PolynomialRoots-2-Cubic.cc',
-        'src\Submodules\Clothoids\submodules\quarticRootsFlocke\src\PolynomialRoots-3-Quartic.cc','src\Submodules\Clothoids\submodules\quarticRootsFlocke\src\PolynomialRoots-Jenkins-Traub.cc',
-        'src\Submodules\Clothoids\submodules\quarticRootsFlocke\src\PolynomialRoots-Utils.cc')],
+        [join('pyclothoids' , *i) for i in (('src','main.cpp'),('src','Submodules','Clothoids','src','Fresnel.cc'),('src','Submodules','Clothoids','src','Clothoid.cc'),
+        ('src','Submodules','Clothoids','src','G2lib.cc'),('src','Submodules','Clothoids','src','AABBtree.cc'),('src','Submodules','Clothoids','src','Biarc.cc'),('src','Submodules','Clothoids','src','BiarcList.cc'),
+        ('src','Submodules','Clothoids','src','Circle.cc'),
+        ('src','Submodules','Clothoids','src','ClothoidDistance.cc'),('src','Submodules','Clothoids','src','ClothoidG2.cc'),('src','Submodules','Clothoids','src','ClothoidList.cc'),
+        ('src','Submodules','Clothoids','src','G2lib_intersect.cc'),('src','Submodules','Clothoids','src','Line.cc'),('src','Submodules','Clothoids','src','PolyLine.cc'),
+        ('src','Submodules','Clothoids','src','Triangle2D.cc'),
+        ('src','Submodules','Clothoids','submodules','quarticRootsFlocke','src','PolynomialRoots-1-Quadratic.cc'),('src','Submodules','Clothoids','submodules','quarticRootsFlocke','src','PolynomialRoots-2-Cubic.cc'),
+        ('src','Submodules','Clothoids','submodules','quarticRootsFlocke','src','PolynomialRoots-3-Quartic.cc'),('src','Submodules','Clothoids','submodules','quarticRootsFlocke','src','PolynomialRoots-Jenkins-Traub.cc'),
+        ('src','Submodules','Clothoids','submodules','quarticRootsFlocke','src','PolynomialRoots-Utils.cc'))],
         include_dirs=[
             # Path to pybind11 headers
             get_pybind_include(),
             get_pybind_include(user=True),
-            str(Path('pyclothoids\src\Submodules\Clothoids\src')),
-            str(Path('pyclothoids\src\Submodules\Clothoids\submodules\quarticRootsFlocke\src'))
+            join('pyclothoids','src','Submodules','Clothoids','src'),
+            join('pyclothoids','src','Submodules','Clothoids','submodules','quarticRootsFlocke','src')
         ],
         language='c++'
     ),
