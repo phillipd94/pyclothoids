@@ -128,7 +128,7 @@ setup(
     long_description_content_type='text/markdown',
     packages = ['pyclothoids'],
     ext_modules=extensions,
-    install_requires=['pybind11>=2.4','numpy'],
+    install_requires=['pybind11>=2.4'],
     setup_requires=['pybind11>=2.4'],
     cmdclass={'build_ext': BuildExt},
     zip_safe=False,
