@@ -2,7 +2,7 @@ About
 =====
 
 * Author : Phillip Dix
-* Version : 0.1.0
+* Version : 0.1.3
 * Date : June 21, 2020
 * License: MIT
 * Source Code : https://github.com/phillipd94/pyclothoids
