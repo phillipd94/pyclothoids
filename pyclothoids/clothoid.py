@@ -61,7 +61,8 @@ class Clothoid(object):
     
     def __setstate__(self,state):
         temp_clothoid = ClothoidCurve()
-        self._ClothoidCurve = temp_clothoid.build(*state)
+        temp_clothoid.build(*state)
+        self._ClothoidCurve = temp_clothoid
     
     @property
     def Parameters(self):
