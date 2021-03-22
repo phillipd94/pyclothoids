@@ -89,7 +89,7 @@ class Clothoid(object):
                 Y = [self.Y(i) for i in sample_points]
                 return [X,Y]
         """
-        return [[j(i*self.length/(npts-1)) for i in range(0,npts)] for j in (self.X,self.Y)] #TODO: move sampling to c++ layer for loop efficiency?
+        return [[j(i*self.length/max(npts-1,1)) for i in range(0,npts)] for j in (self.X,self.Y)] #TODO: move sampling to c++ layer for loop efficiency?
     
     def Scale(self,sfactor,center = (0,0)):
         """Returns a copy of the calling clothoid subjected to a scaling transform with a scale of sfactor and a stationary point at center"""
