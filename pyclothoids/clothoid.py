@@ -33,15 +33,18 @@ class Clothoid(object):
         temp_clothoid.build(x0,y0,t0,k0,kd,s_f)
         return cls(temp_clothoid) 
     
+
     @classmethod
-    def G1Hermite(cls,x0,y0,t0,x1,y1,t1):
+    def Forward(cls,x0,y0,t0,k0,x1,y1,tol=1e-10):
         """
-        A method to numerically compute the solution to the G1 Hermite interpolation problem and initialize a Clothoid object with the solution parameters.
+        A method to numerically compute the solution to the forward problem given a starting point, starting
+        tangent, starting curvature, and final point and initialize a Clothoid object with the solution
+        parameters.
         """
         temp_clothoid = ClothoidCurve()
-        temp_clothoid.build_G1(x0,y0,t0,x1,y1,t1)
+        temp_clothoid.build_forward(x0,y0,t0,k0,x1,y1,tol)
         return cls(temp_clothoid)
-    
+
     def __getattr__(self,name):
         if name in CLOTHOID_FUNCTION_WINDOW:
             return getattr(self._ClothoidCurve,name)

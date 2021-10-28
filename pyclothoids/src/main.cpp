@@ -21,10 +21,12 @@ PYBIND11_MODULE(_clothoids_cpp, m) {
     py::class_<G2lib::ClothoidCurve>(m, "ClothoidCurve")
         .def(py::init<G2lib::ClothoidCurve>())
         .def(py::init<>())
-        .def("build",(void (G2lib::ClothoidCurve::*)(G2lib::real_type, G2lib::real_type, G2lib::real_type, G2lib::real_type, G2lib::real_type, G2lib::real_type)) &G2lib::ClothoidCurve::build, 
+        .def("build",(void (G2lib::ClothoidCurve::*)(G2lib::real_type, G2lib::real_type, G2lib::real_type, G2lib::real_type, G2lib::real_type, G2lib::real_type)) &G2lib::ClothoidCurve::build,
             py::arg("x0"), py::arg("y0"), py::arg("t0"), py::arg("k0"), py::arg("dk"), py::arg("L"))
         .def("build_G1", &G2lib::ClothoidCurve::build_G1,
-            py::arg("x0"), py::arg("y0"), py::arg("t0"), py::arg("x1"), py::arg("y1"), py::arg("t1"), py::arg("tol") = std::pow(1,-10))
+            py::arg("x0"), py::arg("y0"), py::arg("t0"), py::arg("x1"), py::arg("y1"), py::arg("t1"), py::arg("tol"))
+        .def("build_forward", &G2lib::ClothoidCurve::build_forward,
+            py::arg("x0"), py::arg("y0"), py::arg("t0"), py::arg("k0"), py::arg("x1"), py::arg("y1"), py::arg("tol"))
 
         .def("Theta", &G2lib::ClothoidCurve::theta, py::arg("s"))
         .def("ThetaD", &G2lib::ClothoidCurve::theta_D, py::arg("s"))
