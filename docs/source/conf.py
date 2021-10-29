@@ -13,6 +13,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join('..','..','pyclothoids')))
+sys.path.insert(0, os.path.abspath(os.path.join('..','..')))
 
 
 # -- Project information -----------------------------------------------------
