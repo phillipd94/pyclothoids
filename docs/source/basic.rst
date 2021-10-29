@@ -1,15 +1,18 @@
 Basic Usage
 ===========
 
-The Clothoid class provides two initialization methods:
+The Clothoid class provides three initialization methods:
 
 *	StandardParams
 *	G1Hermite
+*   Forward
 
 G1Hermite is a special initialization function that computes the unique clothoid that joins two points with two prescribed tangent angles. [1]_
 
 StandardParams simply assumes you already know the desired starting point, starting tangent, starting curvature, curvature rate, and arc length of the clothoid segment you wish to construct.  
 It then takes each of these as arguments.
+
+Forward is similar to G1Hermite, except that it uses initial curvature and tangent as inputs instead of start and end tangents.  This leaves the final tangent and curvature as unspecified parameters determined by the underlying solver.
 
 Let's illustrate the usage with examples.  Suppose you are an airplane pilot taking off from a runway facing due west at point (0,0) and the destination airport has a runway facing due east at (1,1).  
 You're a particularly lazy pilot, and it's difficult to move your stick to steer quickly in one direction or the other, so you start to wonder whether you can only steer in one direction at a constant rate for the entire flight and still arive in the right orientation in your destination.

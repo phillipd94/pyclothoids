@@ -8,7 +8,7 @@ from pathlib import Path
 from os import listdir
 from os.path import isfile, join, abspath, dirname
 
-__version__ = '0.1.2'
+__version__ = '0.1.4'
 
 
 class get_pybind_include(object):
