@@ -5,6 +5,7 @@ Clothoid
 	
 	.. automethod:: StandardParams
 	.. automethod:: G1Hermite
+	.. automethod:: Forward
 	.. autoattribute:: Parameters
 	.. attribute:: length
 
