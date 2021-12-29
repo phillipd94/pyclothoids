@@ -148,10 +148,10 @@ Clothoid
 	
 		Compute the distance between a point q=(qx, qy) and the curve
 		
-	.. method:: DistanceISO(qx, qy)
+	.. method:: DistanceISO(qx, qy, offset)
 	
 		Compute the distance between a point q=(qx, qy) and the curve with offset (ISO)
 		
-	.. method:: DistanceSAE(qx, qy)
+	.. method:: DistanceSAE(qx, qy, offset)
 	
 		Compute the distance between a point q=(qx, qy) and the curve with offset (SAE)
