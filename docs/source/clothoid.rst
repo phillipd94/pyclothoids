@@ -143,3 +143,15 @@ Clothoid
 	.. automethod:: Flip
 	.. automethod:: Reverse
 	.. automethod:: Trim
+	
+	.. method:: Distance(qx, qy)
+	
+		Compute the distance between a point q=(qx, qy) and the curve
+		
+	.. method:: DistanceISO(qx, qy)
+	
+		Compute the distance between a point q=(qx, qy) and the curve with offset (ISO)
+		
+	.. method:: DistanceSAE(qx, qy)
+	
+		Compute the distance between a point q=(qx, qy) and the curve with offset (SAE)
