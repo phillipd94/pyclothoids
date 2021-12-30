@@ -53,10 +53,10 @@ PYBIND11_MODULE(_clothoids_cpp, m) {
         .def("YEnd", &G2lib::ClothoidCurve::yEnd)
         .def("KappaStart", &G2lib::ClothoidCurve::kappaBegin)
         .def("KappaEnd", &G2lib::ClothoidCurve::kappaEnd)
-		
-		.def("Distance", &G2lib::ClothoidCurve::distance, py::arg("qx"), py::arg("qy"))
-		.def("DistanceISO", &G2lib::ClothoidCurve::distance_ISO, py::arg("qx"), py::arg("qy"), py::arg("offs"))
-		.def("DistanceSAE", &G2lib::ClothoidCurve::distance_SAE, py::arg("qx"), py::arg("qy"), py::arg("offs"))
+
+        .def("Distance", &G2lib::ClothoidCurve::distance, py::arg("qx"), py::arg("qy"))
+        .def("DistanceISO", &G2lib::ClothoidCurve::distance_ISO, py::arg("qx"), py::arg("qy"), py::arg("offs"))
+        .def("DistanceSAE", &G2lib::ClothoidCurve::distance_SAE, py::arg("qx"), py::arg("qy"), py::arg("offs"))
 
         .def("_translate", &G2lib::ClothoidCurve::translate, py::arg("dx"), py::arg("dy"), "DANGER: EXPOSED MUTABLE STATE!!  This function translates the clothoid curve in cartesian space")
         .def("_rotate", &G2lib::ClothoidCurve::rotate, py::arg("angle"), py::arg("x_center") = 0, py::arg("y_center") = 0, "DANGER: EXPOSED MUTABLE STATE!!  This function rotates the clothoid curve in cartesian space")
