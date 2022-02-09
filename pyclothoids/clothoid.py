@@ -62,7 +62,7 @@ class Clothoid(object):
 
     def __str__(self):
         return 'Clothoid: ' + ''.join(map(lambda m,n:m + ':' + str(getattr(self,n)) + ' ',
-                                             ('x0','y0','y0','k0','kd','s'),('XStart','YStart','ThetaStart','KappaStart','dk','length')))
+                                             ('x0','y0','t0','k0','kd','s'),('XStart','YStart','ThetaStart','KappaStart','dk','length')))
 
     def __repr__(self):
         return str(self)
