@@ -180,12 +180,12 @@ class Clothoid(object):
             return Clothoid.StandardParams(xp,yp,th,-self.KappaStart,-self.dk,self.length)
 
 
-def SolveG2(x0,y0,t0,k0,x1,y1,t1,k1):
+def SolveG2(x0,y0,t0,k0,x1,y1,t1,k1,Dmax=0,dmax=0):
     """
     Returns a tuple of three Clothoids that form a G2 continuous path that interpolates two cartesian
     endpoints, two tangents, and two curvatures
     """
     solver = G2solve3arc()
-    solver.build(x0,y0,t0,k0,x1,y1,t1,k1,0,0)
+    solver.build(x0,y0,t0,k0,x1,y1,t1,k1,Dmax,dmax)
     return tuple(map(Clothoid,(solver.getS0(),solver.getSM(),solver.getS1())))
 
