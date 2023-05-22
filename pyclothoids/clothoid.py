@@ -183,7 +183,8 @@ class Clothoid(object):
 def SolveG2(x0,y0,t0,k0,x1,y1,t1,k1,Dmax=0,dmax=0):
     """
     Returns a tuple of three Clothoids that form a G2 continuous path that interpolates two cartesian
-    endpoints, two tangents, and two curvatures
+    endpoints, two tangents, and two curvatures.  Exposes two additional parameters for fine tuning
+    the properties of the desired solution.
     """
     solver = G2solve3arc()
     solver.build(x0,y0,t0,k0,x1,y1,t1,k1,Dmax,dmax)
