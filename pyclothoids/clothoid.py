@@ -3,7 +3,7 @@ from ._clothoids_cpp import ClothoidCurve, G2solve3arc
 from math import cos,sin,atan2
 
 CLOTHOID_FUNCTION_WINDOW = frozenset(("X","XD","XDD","XDDD","Y","YD","YDD","YDDD",
-                                "Theta","ThetaD","ThetaDD","ThetaDDD"))
+                                "Theta","ThetaD","ThetaDD","ThetaDDD", "Distance", "DistanceISO", "DistanceSAE"))
 
 CLOTHOID_PROPERTY_WINDOW = frozenset(("length","dk","ThetaStart","ThetaEnd","XStart",
                                 "XEnd","YStart","YEnd","KappaStart","KappaEnd"))
