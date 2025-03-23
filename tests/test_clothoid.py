@@ -281,6 +281,33 @@ def test_intersection_points(G1Params1, G1Params2, expectedNumIntersections):
         assert other.Distance(*p) == pytest.approx(0)
 
 
+# --- Caching ---
+
+
+def test_default_cache_size_configurable():
+    clothoid = Clothoid.G1Hermite(0.0, 0.0, math.pi / 4, 1, 1, 0)
+    assert clothoid.ProjectPointOntoClothoid.cache_info().maxsize == 32
+    clothoid.SetupProjectionCache(64)
+    assert clothoid.ProjectPointOntoClothoid.cache_info().maxsize == 64
+
+
+def test_cache_disable():
+    clothoid = Clothoid.G1Hermite(0.0, 0.0, math.pi / 4, 1, 1, 0)
+    assert clothoid.ProjectPointOntoClothoid.cache_info().maxsize == 32
+    clothoid.SetupProjectionCache(None)
+    assert not hasattr(clothoid.ProjectPointOntoClothoid, "cache_info")
+
+
+def test_caches_are_independent(mocker):
+    clothoid1 = Clothoid.G1Hermite(0.0, 0.0, math.pi / 4, 1, 1, 0)
+    clothoid2 = Clothoid.G1Hermite(0.0, 0.0, math.pi / 4, 1, 1, 0)
+
+    clothoid1.Distance(5, 5)
+
+    assert clothoid1.ProjectPointOntoClothoid.cache_info().currsize == 1
+    assert clothoid2.ProjectPointOntoClothoid.cache_info().currsize == 0
+
+
 # --- Test G2 Solver ---
 
 

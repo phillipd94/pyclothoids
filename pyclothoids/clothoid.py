@@ -35,6 +35,8 @@ CLOTHOID_PROPERTY_WINDOW = frozenset(
     )
 )
 
+PROJECTION_CACHE_SIZE = 32
+
 
 class Clothoid(object):
     """
@@ -50,6 +52,7 @@ class Clothoid(object):
         else:
             # No need to create a copy when a C++ clothoid is passed directly by the classmethods or G2solver
             self._ClothoidCurve = clothoid_curve
+        self.SetupProjectionCache(PROJECTION_CACHE_SIZE)
 
     @classmethod
     def StandardParams(cls, x0, y0, t0, k0, kd, s_f):
@@ -108,6 +111,22 @@ class Clothoid(object):
         temp_clothoid = ClothoidCurve()
         temp_clothoid.build(*state)
         self._ClothoidCurve = temp_clothoid
+
+    def SetupProjectionCache(self, cachesize):
+        """
+        By default, each instance of the Clothoid object maintains an lru cache of the results from projecting
+        any point onto the clothoid.  This is because the projection operation calculates several potentially
+        useful quantities all at once, such as projection distance and the coordinates of the projected point.
+        Caching the results means that users can call `ClosestPoint` and `Distance` separately and sequentially
+        without recomputing the projection.  The default cachesize is set to 32 but this method allows
+        configuring the cache with a custom size.  Pass `cachesize = None` to disable caching entirely.
+        """
+        if cachesize is not None:
+            self.ProjectPointOntoClothoid = lru_cache(maxsize=cachesize)(
+                self._ProjectPointOntoClothoid
+            )
+        else:
+            self.ProjectPointOntoClothoid = self._ProjectPointOntoClothoid
 
     @property
     def Parameters(self):
@@ -268,19 +287,7 @@ class Clothoid(object):
         _, _, ProjectionDistance = self.ProjectPointOntoClothoid(X, Y)
         return ProjectionDistance
 
-    @lru_cache(maxsize=32)
-    def ProjectPointOntoClothoid(self, X, Y):
-        """
-        Calculates the minimum-distance projection of a given point onto the clothoid.  Returns a tuple containing
-        the closest point coordinates, the arc length along the clothoid where the closest point lies, and the
-        distance between the given point and the projected point on the clothoid.
-
-        This method is called by the `ClosestPointXY`, `ClosestPointArcLength`, and `Distance` methods.  Because
-        the Clothoid object is immutable, we use an LRU cache to save outputs of recently used input points.
-
-        This allows a user to call `Distance` and `ClosestPointXY` separately with the same input point for
-        code readability without recomputing the underlying projection.
-        """
+    def _ProjectPointOntoClothoid(self, X, Y):
         ProjectedX, ProjectedY, ProjectedArclength, ProjectionDistance = (
             self._ClothoidCurve._project_point_to_clothoid(X, Y)
         )
