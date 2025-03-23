@@ -143,3 +143,10 @@ Clothoid
 	.. automethod:: Flip
 	.. automethod:: Reverse
 	.. automethod:: Trim
+
+	.. automethod:: ClosestPoint
+	.. automethod:: ClosestPointArcLength
+	.. automethod:: Distance
+	.. automethod:: ProjectPointOntoClothoid
+	.. automethod:: IntersectionPoints
+	.. automethod:: IntersectionArcLengths

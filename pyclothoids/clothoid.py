@@ -239,7 +239,7 @@ class Clothoid(object):
                 xp, yp, th, -self.KappaStart, -self.dk, self.length
             )
 
-    def ClosestPointXY(self, X, Y):
+    def ClosestPoint(self, X, Y):
         """
         Returns a tuple containing the cartesian coordinates of the point on the clothoid which is closest to
         the point defined by the X and Y input arguments.
@@ -251,8 +251,8 @@ class Clothoid(object):
 
     def ClosestPointArcLength(self, X, Y):
         """
-        Returns a the clothoid parameter (arc length) of the point on the clothoid which is closest to the
-        point defined by the X and Y input arguments.
+        Returns the arc length along the clothoid associated with the point on the clothoid which is closest
+        to the point defined by the X and Y input arguments.
 
         This method calls the `ProjectPointOntoClothoid` method and returns only the arc length return value
         """
@@ -271,9 +271,9 @@ class Clothoid(object):
     @lru_cache(maxsize=32)
     def ProjectPointOntoClothoid(self, X, Y):
         """
-        Calculates the minimum-distance projection of a given point onto the clothoid.  Returns the closest
-        point coordinates, the arc length along the clothoid where the closest point is, and the distance
-        between the given point and the projected point on the clothoid.
+        Calculates the minimum-distance projection of a given point onto the clothoid.  Returns a tuple containing
+        the closest point coordinates, the arc length along the clothoid where the closest point lies, and the
+        distance between the given point and the projected point on the clothoid.
 
         This method is called by the `ClosestPointXY`, `ClosestPointArcLength`, and `Distance` methods.  Because
         the Clothoid object is immutable, we use an LRU cache to save outputs of recently used input points.
@@ -288,11 +288,11 @@ class Clothoid(object):
 
     def IntersectionArcLengths(self, other):
         """
-        Returns a list of tuples.  Each tuple contains a pair of clothoid parameters (arc lengths) near which an
+        Returns a list of tuples.  Each tuple contains a pair of clothoid arc length parameters near which an
         intersection occurs.  The first parameter is the distance along the calling clothoid (self) at which
         the intersection occurs, and the second parameter is the distance along the argument clothoid (other).
 
-        Note that due to the numerical methods and successive approximation methods involved, the floating point
+        Note that due to the numerical methods and iterative approximation methods involved, the floating point
         coordinates of the intersection point on the first clothoid will not exactly coincide with the coordinates
         of the intersection point on the second clothoid.  However we expect this error be extremely small.
         """

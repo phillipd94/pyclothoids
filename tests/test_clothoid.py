@@ -181,7 +181,7 @@ def test_trim(s_begin, s_end):
 )
 def test_closest_point_projection(x, y):
     clothoid = Clothoid.StandardParams(0, 0, 0, 0.1, 0.01, 5)
-    projected_point = clothoid.ClosestPointXY(x, y)
+    projected_point = clothoid.ClosestPoint(x, y)
     assert isinstance(projected_point, tuple)
     assert len(projected_point) == 2
     assert isinstance(projected_point[0], float)
