@@ -4,8 +4,10 @@ Author: Phillip Dix
 
 #ifdef _WIN32
 #include <pybind11\pybind11.h>
+#include <pybind11\stl.h>
 #else
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 #endif
 
 #include <G2lib.hh>
@@ -59,6 +61,27 @@ PYBIND11_MODULE(_clothoids_cpp, m) {
         .def("_scale", &G2lib::ClothoidCurve::scale, py::arg("scale_factor"), "DANGER: EXPOSED MUTABLE STATE!!  This function scales the clothoid curve in cartesian space")
         .def("_reverse", &G2lib::ClothoidCurve::reverse, "DANGER: EXPOSED MUTABLE STATE!!  This function reverses the curvature of the clothoid curve in cartesian space")
         .def("_trim", &G2lib::ClothoidCurve::trim, py::arg("s_begin"),py::arg("s_end"), "DANGER: EXPOSED MUTABLE STATE!!  This function removes parts of the curve outside the provided parameter range")
+        
+        .def("_intersections",
+            [](const G2lib::ClothoidCurve& self, const G2lib::ClothoidCurve& OtherClothoid) {
+                G2lib::IntersectList ilist;
+                self.intersect_ISO(0.0, OtherClothoid, 0.0, ilist, false);
+                
+                std::vector<std::pair<G2lib::real_type, G2lib::real_type>> result(ilist.begin(), ilist.end());
+                return result;
+            },
+            py::keep_alive<1, 2>(), // make sure python can't garbage collect this while we're running
+            py::arg("OtherClothoid")
+        )
+        .def("_project_point_to_clothoid",
+            [](const G2lib::ClothoidCurve& self, G2lib::real_type X, G2lib::real_type Y) {
+                G2lib::real_type x, y, s, t, DST;
+                G2lib::int_type result = self.closestPoint_ISO(X, Y, 0.0, x, y, s, t, DST);
+                return std::make_tuple(x, y, s, DST);
+            },
+            py::arg("X"),
+            py::arg("Y")
+        )
         ;
 
 
