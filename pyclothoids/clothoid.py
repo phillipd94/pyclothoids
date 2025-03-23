@@ -286,7 +286,7 @@ class Clothoid(object):
         )
         return ((ProjectedX, ProjectedY), ProjectedArclength, ProjectionDistance)
 
-    def IntersectionParameters(self, other):
+    def IntersectionArcLengths(self, other):
         """
         Returns a list of tuples.  Each tuple contains a pair of clothoid parameters (arc lengths) near which an
         intersection occurs.  The first parameter is the distance along the calling clothoid (self) at which

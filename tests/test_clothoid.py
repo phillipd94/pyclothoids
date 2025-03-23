@@ -241,10 +241,10 @@ def test_distance_to_clothoid(x, y):
         ),
     ],
 )
-def test_intersection_parameters(G1Params1, G1Params2, expectedNumIntersections):
+def test_intersection_arc_lengths(G1Params1, G1Params2, expectedNumIntersections):
     clothoid = Clothoid.G1Hermite(*G1Params1)
     other = Clothoid.G1Hermite(*G1Params2)
-    parameter_list = clothoid.IntersectionParameters(other)
+    parameter_list = clothoid.IntersectionArcLengths(other)
     assert len(parameter_list) == expectedNumIntersections
     P1, P2 = zip(*parameter_list) if parameter_list else ((), ())
     for i, j in zip(P1, P2):
