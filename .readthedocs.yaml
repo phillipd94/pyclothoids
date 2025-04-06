@@ -4,7 +4,7 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.7"
-  commands:
+  post_install:
     - git submodule update --init --recursive
     - pip install .
 
