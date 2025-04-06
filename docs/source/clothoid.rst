@@ -151,13 +151,9 @@ Clothoid
 
 		Calculates the minimum-distance projection of a given point onto the clothoid.  Returns a tuple containing
         the closest point coordinates, the arc length along the clothoid where the closest point lies, and the
-        distance between the given point and the projected point on the clothoid.
-
-        This method is called by the `ClosestPoint`, `ClosestPointArcLength`, and `Distance` methods.  Because
+        distance between the given point and the projected point on the clothoid.\nThis method is called by the `ClosestPoint`, `ClosestPointArcLength`, and `Distance` methods.  Because
         the Clothoid object is immutable, we wrap this method in an LRU cache on object construction to save
-        outputs of recently used input points.
-
-        This allows a user to call `Distance` and `ClosestPoint` separately with the same input point for
+        outputs of recently used input points.\nThis allows a user to call `Distance` and `ClosestPoint` separately with the same input point for
         code readability without recomputing the underlying projection.
 
 	.. automethod:: IntersectionPoints
