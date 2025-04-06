@@ -172,8 +172,8 @@ class Clothoid(object):
         stationary point at center
         """
         if sfactor == 0:
-            return Clothoid.StandardParams(0, 0, 0, 0, 0, 0)
-        temp_clothoid = Clothoid(self)
+            return self.__class__.StandardParams(0, 0, 0, 0, 0, 0)
+        temp_clothoid = self.__class__(self)
         temp_clothoid._ClothoidCurve._scale(
             sfactor
         )  ##DANGER WILL ROBINSON : MUTATING STATE DIRECTLY##
@@ -192,7 +192,7 @@ class Clothoid(object):
         Returns a copy of the calling clothoid subjected to a pure translation transform described by a vector
         (xoff,yoff)
         """
-        temp_clothoid = Clothoid(self)
+        temp_clothoid = self.__class__(self)
         temp_clothoid._ClothoidCurve._translate(
             xoff, yoff
         )  ##DANGER WILL ROBINSON : MUTATING STATE DIRECTLY##
@@ -204,7 +204,7 @@ class Clothoid(object):
         stationary point at center
         """
         cx, cy = center
-        temp_clothoid = Clothoid(self)
+        temp_clothoid = self.__class__(self)
         temp_clothoid._ClothoidCurve._rotate(
             angle, cx, cy
         )  ##DANGER WILL ROBINSON : MUTATING STATE DIRECTLY##
@@ -214,7 +214,7 @@ class Clothoid(object):
         """
         Returns a copy of the calling clothoid with the direction of the arc length parameter reversed
         """
-        temp_clothoid = Clothoid(self)
+        temp_clothoid = self.__class__(self)
         temp_clothoid._ClothoidCurve._reverse()  ##DANGER WILL ROBINSON : MUTATING STATE DIRECTLY##
         return temp_clothoid
 
@@ -222,7 +222,7 @@ class Clothoid(object):
         """
         Returns a copy of the subsection of the calling clothoid that lies between s_begin and s_end
         """
-        temp_clothoid = Clothoid(self)
+        temp_clothoid = self.__class__(self)
         temp_clothoid._ClothoidCurve._trim(
             s_begin, s_end
         )  ##DANGER WILL ROBINSON : MUTATING STATE DIRECTLY##
@@ -246,15 +246,15 @@ class Clothoid(object):
         dx = cos(th)
         dy = sin(th)
         if axis == "y":
-            return Clothoid.StandardParams(
+            return self.__class__.StandardParams(
                 -xp, yp, atan2(dy, -dx), -self.KappaStart, -self.dk, self.length
             )
         if axis == "x":
-            return Clothoid.StandardParams(
+            return self.__class__.StandardParams(
                 xp, -yp, atan2(-dy, dx), -self.KappaStart, -self.dk, self.length
             )
         if axis == "start":
-            return Clothoid.StandardParams(
+            return self.__class__.StandardParams(
                 xp, yp, th, -self.KappaStart, -self.dk, self.length
             )
 
