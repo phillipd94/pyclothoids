@@ -1,5 +1,8 @@
 version: 2
 
+vcs:
+  submodules: true
+
 build:
   os: ubuntu-22.04
   tools:
