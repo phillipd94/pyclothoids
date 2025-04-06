@@ -149,7 +149,6 @@ Clothoid
 	.. automethod:: IntersectionPoints
 	.. automethod:: IntersectionArcLengths
 	.. automethod:: SetupProjectionCache
-
 	.. method:: ProjectPointOntoClothoid(X, Y)
 
 		Calculates the minimum-distance projection of a given point onto the clothoid.
