@@ -1,13 +1,11 @@
 version: 2
 
-vcs:
-  submodules: true
-
 build:
   os: ubuntu-22.04
   tools:
     python: "3.7"
   commands:
+    - git submodule update --init --recursive
     - pip install .
 
 # Build from the docs/ directory with Sphinx
